@@ -1,3 +1,5 @@
-export default( ) => {
-  return <h1>Index</h1>
-}
+const IndexPage = () => {
+  return <h1>Index</h1>;
+};
+
+export default IndexPage;
