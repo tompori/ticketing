@@ -48,6 +48,7 @@ router.post(
 
     // Build the order and save it to the database
     const order = Order.build({
+      version: 1, // TODO: FIX!
       userId: req.currentUser!.id,
       status: OrderStatus.Created,
       expiresAt: expiration,
@@ -58,6 +59,7 @@ router.post(
     // Publish an event saying that an order was created
     new OrderCreatedPublisher(natsWrapper.client).publish({
       id: order.id,
+      version: 1, // TODO: FIX!
       status: order.status,
       userId: order.userId,
       expiresAt: order.expiresAt.toISOString(),
